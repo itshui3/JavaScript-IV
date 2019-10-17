@@ -29,6 +29,12 @@ class Instructor extends Person {
   catchPhr() {
     console.log(`Catch-Phrase: ${this.catchPhrase}`);
   }
+  janks(trgStu) {
+    if (Math.random() * 2 > 1) {
+      trgStu.grade -= Math.floor(Math.random() * 30);
+    }
+
+  }
 } // {specialty: , favLanguage: , catchPhrase: , name: , location: , age: };
 
 class ProjectManager extends Instructor {
@@ -62,6 +68,16 @@ class Student extends Person {
   }
   sprintChallenge(subj) {
     console.log(`${this.name} has begun sprint challenge on ${subj}`);
+  }
+  brownNose(trg) { // show this off
+    trg.janks(this);
+  }
+  graduate() {
+    if(this.grade > 70) {
+      console.log('Okay fine, you can has job');
+    } else {
+      console.log('You\'re not ready. Git more gudder');
+    }
   }
 } // {prevBackground: , className: , favSubjects: , name: , location: , age: };
 
@@ -217,3 +233,10 @@ mona.speak();
 mona.PRAssignment('Javascript');
 mona.sprintChallenge('CSS');
 mona.listsSubjects();
+
+// Extra Janks
+console.log(hui.grade);
+josh.janks(hui);
+console.log(hui.grade);
+hui.brownNose(josh);
+console.log(hui.grade);
