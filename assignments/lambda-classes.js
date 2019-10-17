@@ -9,7 +9,8 @@ class Person {
     this.age = obj.age;
   }
   speak() {
-    console.log(`Hello my name is ${this.name}, I am from ${this.location}.`);
+    msg(`Hello my name is ${this.name}, I am from ${this.location}.`);
+    return `Hello my name is ${this.name}, I am from ${this.location}.`;
   }
 } // {name: , location: , age: };
 
@@ -21,13 +22,17 @@ class Instructor extends Person {
     this.catchPhrase = obj.catchPhrase;
   }
   demo(subj) {
-    console.log(`Today we are learning about ${subj}.`);
+
+    msg(`Today we are learning about ${subj}.`);
+    return `Today we are learning about ${subj}.`;
   }
   grade(student, subj) {
-    console.log(`${student.name} receives a perfect score on ${subj}`);
+    msg(`${student.name} receives a perfect score on ${subj}`);
+    return `${student.name} receives a perfect score on ${subj}`;
   }
   catchPhr() {
-    console.log(`Catch-Phrase: ${this.catchPhrase}`);
+    msg(`Catch-Phrase: ${this.catchPhrase}`);
+    return `Catch-Phrase: ${this.catchPhrase}`;
   }
   janks(trgStu) {
     if (Math.random() * 2 > 1) {
@@ -44,10 +49,10 @@ class ProjectManager extends Instructor {
     this.favInstructor = obj.favInstructor;
   }
   standUp(channel) {
-    console.log(`${this.name} announces to ${channel}, @channel Time for stand-up, don't be LATE!`);
+    msg(`${this.name} announces to ${channel}, @channel Time for stand-up, don't be LATE!`);
   }
   debugsCode(student, subj) {
-    console.log(`${this.name} debugs ${student.name}'s code on ${subj}`);
+    msg(`${this.name} debugs ${student.name}'s code on ${subj}`);
   }
 } //{gradClassName: ,favInstructor: ,name: ,location: ,age: };
 
@@ -60,23 +65,23 @@ class Student extends Person {
     this.grade = obj.grade;
   }
   listsSubjects() {
-    console.log('These are my favorite subjects');
-    this.favSubjects.forEach( (elem) => {console.log(elem)} );
+    msg('These are my favorite subjects');
+    this.favSubjects.forEach( (elem) => {msg(elem)} );
   }
   PRAssignment(subj) {
-    console.log(`${this.name} has submitted a PR for ${subj}`);
+    msg(`${this.name} has submitted a PR for ${subj}`);
   }
   sprintChallenge(subj) {
-    console.log(`${this.name} has begun sprint challenge on ${subj}`);
+    msg(`${this.name} has begun sprint challenge on ${subj}`);
   }
   brownNose(trg) { // show this off
     trg.janks(this);
   }
   graduate() {
     if(this.grade > 70) {
-      console.log('Okay fine, you can has job');
+      msg('Okay fine, you can has job');
     } else {
-      console.log('You\'re not ready. Git more gudder');
+      msg('You\'re not ready. Git more gudder');
     }
   }
 } // {prevBackground: , className: , favSubjects: , name: , location: , age: };
@@ -162,7 +167,7 @@ const ash = new Student({
 const mona = new Student({
   prevBackground: '',
   className: 'WEB25',
-  favSubjects: [''],
+  favSubjects: ['HTML', 'React'],
   name: 'Ramona Burns',
   location: 'Utah',
   age: '?', 
@@ -180,20 +185,17 @@ const todd = new Student({
 
 // Instructor Test Cases
 
-josh.speak();
-josh.catchPhr();
-josh.demo('Lambda Launch');
-josh.grade(hui, 'Lambda Launch');
+msg([josh.speak(), josh.catchPhr(), josh.demo('Lambda Launch'), josh.grade(hui, 'Lambda Launch')]);
 
-brit.speak();
-brit.catchPhr();
-brit.demo('Flexbox');
-brit.grade(ash, 'HTML');
+msg([brit.speak(), 
+brit.catchPhr(), 
+brit.demo('Flexbox'), 
+brit.grade(ash, 'HTML')]);
 
-luis.speak();
-luis.catchPhr();
-luis.demo('Node.js');
-luis.grade(itel, 'Node.Js');
+msg([luis.speak(),
+luis.catchPhr(),
+luis.demo('Node.js'),
+luis.grade(itel, 'Node.Js')]);
 
 // TL Test Cases
 
@@ -235,8 +237,11 @@ mona.sprintChallenge('CSS');
 mona.listsSubjects();
 
 // Extra Janks
-console.log(hui.grade);
+msg(hui.grade);
 josh.janks(hui);
-console.log(hui.grade);
+msg(hui.grade);
 hui.brownNose(josh);
-console.log(hui.grade);
+msg(hui.grade);
+
+console.log([1, 2, 3, 4, 5]);
+msg([1, 2, 3, 4, 5]);
